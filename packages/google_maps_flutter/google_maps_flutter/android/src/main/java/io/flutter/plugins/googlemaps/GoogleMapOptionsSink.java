@@ -54,5 +54,7 @@ interface GoogleMapOptionsSink {
 
   void setInitialCircles(Object initialCircles);
 
+  void setInitialHeatMaps(Object initialHeatMaps);
+
   void setInitialTileOverlays(List<Map<String, ?>> initialTileOverlays);
 }

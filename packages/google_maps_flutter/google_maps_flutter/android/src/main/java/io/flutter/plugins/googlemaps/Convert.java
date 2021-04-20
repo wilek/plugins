@@ -592,6 +592,32 @@ class Convert {
     }
   }
 
+  static String interpretHeatTileOptions(Object o, HeatTileOptionsSink sink) {
+    final Map<?, ?> data = toMap(o);
+    final Object opacity = data.get("opacity");
+    if (opacity != null) {
+      sink.setOpacity(toDouble(opacity));
+    }
+    final Object radius = data.get("radius");
+    if (radius != null) {
+      sink.setRadius(toInt(radius));
+    }
+    final Object intensity = data.get("intensity");
+    if (intensity != null) {
+      sink.setMaxIntensity(toDouble(intensity));
+    }
+    final Object points = data.get("points");
+    if (points != null) {
+      sink.setData(toPoints(points));
+    }
+    final String heatTileId = (String) data.get("heatTileId");
+    if (heatTileId == null) {
+      throw new IllegalArgumentException("heatTile was null");
+    } else {
+      return heatTileId;
+    }
+  }
+
   private static List<LatLng> toPoints(Object o) {
     final List<?> data = toList(o);
     final List<LatLng> points = new ArrayList<>(data.size());
